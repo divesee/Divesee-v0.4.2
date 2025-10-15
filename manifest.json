@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Divesee 潜读",
+  "description": "Demo for Divesee DeepReading Overlay - immersive reading and speed reading with AI assistance.",
+  "version": "0.4.2",
+  "icons": {
+    "16": "assets/icon-16.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Divesee 潜读"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "content/deepread.content.js",
+        "content/deepread.panel.js"
+      ],
+      "css": [
+        "content/deepread.styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content/deepread.styles.css",
+        "content/stopwords-zh.txt"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+:root {
+  --dr-green: #22c55e;
+  --dr-green-bg: rgba(34,197,94,.16);
+  --dr-blue: #2563eb;
+  --dr-blue-light: #60a5fa;
+
+  --dr-accent: #2563eb;
+  --dr-mark-bg: rgba(37, 99, 235, .12);
+  --dr-logic: #0ea5e9;
+  --dr-bionic: #ef4444;
+}
+/* 仅普通/深色两种主题 */
+html.deepread-theme-dark { background: #0b0f15 !important; color: #dbe6fb !important; }
+
+/* 双栏不显示分隔线，仅列与列之间间距 */
+html.deepread-2col :is(article,main,.content,.article,.entry,#content) {
+  column-count: 2;
+  column-gap: 2.2rem;
+}
+
+/* AI 显示子开关 */
+html:not(.dr-ai-main) .dr-main { background: var(--dr-green-bg); border-left: 3px solid var(--dr-green); padding-left: .35em; border-radius:.25em; }
+html:not(.dr-ai-topic) .dr-topic { background: none !important; border: 0 !important; text-decoration: underline wavy var(--dr-blue); text-underline-offset: .22em; }
+html:not(.dr-ai-keyword) .dr-keyword { background: none !important; color: var(--dr-blue); font-weight: 700; padding: 0; border: 0; }
+
+.dr-wrap { position: relative; }
+.dr-key { background: var(--dr-mark-bg); border-radius: .25em; padding: 0 .08em; font-weight: 600; }
+.dr-logic { color: var(--dr-logic); font-weight: 600; border-bottom: 2px dashed var(--dr-logic); }
+.dr-bionic > .dr-begin { color: var(--dr-bionic); font-weight: 700; }
+
+.dr-main { background: var(--dr-green-bg); border-left: 3px solid var(--dr-green); padding-left: .35em; border-radius:.25em; }
+.dr-topic { background: none !important; border: 0 !important; text-decoration: underline wavy var(--dr-blue); text-underline-offset: .22em; }
+.dr-keyword { background: none !important; color: var(--dr-blue); font-weight: 700; padding: 0; border: 0; }
+
+html.deepread-focus p:not(:hover), html.deepread-focus li:not(:hover) { opacity: .6; transition: opacity .2s ease; }
+html.deepread-focus p:hover, html.deepread-focus li:hover { opacity: 1; }
+
+.dr-underline { background-image: linear-gradient(var(--dr-accent), var(--dr-accent)); background-position: 0 100%; background-repeat: no-repeat; background-size: 0% 2px; transition: background-size .6s ease; }
+.dr-underline.dr-on { background-size: 100% 2px; }
+
+/* 全局行距/字号来自变量，随调节杆即时生效 */
+html.deepread-immersive :is(p, li) { line-height: var(--dr-lineHeight, 1.8); }
+
+html.deepread-theme-dark .dr-keyword{ color: var(--dr-blue-light); }
+
+.dr-key-sent { background: rgba(37,99,235,.10); border-left: 2px solid rgba(37,99,235,.45); padding-left: .25em; border-radius: .25em; }
+
+/* Lightweight status bar */
+#dr-status {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10%;
+  z-index: 2147483647;
+  background: rgba(15, 23, 42, .88);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+#dr-status.show { opacity: 1; }
+#dr-status.ok { background: rgba(22, 163, 74, .92); } /* green */
+#dr-status.warn { background: rgba(37,99,235,.92); } /* blue */
+#dr-status.err { background: rgba(185, 28, 28, .92); } /* red */
